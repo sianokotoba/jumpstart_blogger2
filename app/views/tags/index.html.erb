@@ -8,4 +8,6 @@
   <% end %>
 </ul>
 <br />
+<% if logged_in? %>
 <%= link_to "<< Back to Articles List", articles_path %><br />
+<% end %>

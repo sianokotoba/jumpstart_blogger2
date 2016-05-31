@@ -1,9 +1,13 @@
 class ArticlesController < ApplicationController
   include ArticlesHelper
+  before_filter :require_login, except: [:index, :show]
 
-  #params = ActionController::Parameters.new({
-  #  id: Article.all
-  #})
+  def require_login
+    unless current_user #logged_in
+      redirect_to root_path
+      flash.notice = "You must be logged in to do this!"
+    end
+  end
 
   def index
     @articles = Article.all
